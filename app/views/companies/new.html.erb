@@ -3,6 +3,7 @@
 	<ol>
 		<li>Upon sign up, we can (should) validate the recruiter either by calling them or call their company.</li>
 		<li>Optional - We can even fill up this page for them during the call.</li>
+		<li>Main recruiter should also be able to list down their colleagues (give email and temp password) who have access to that company</li>
 	</ol>
 	<h4>Process: User sign up > User receives a call > User gets authorisation code > user go to this page</h4>
 </div>
@@ -47,7 +48,7 @@
 			<div>
 				<%= form.label :strength, 'Which would you prefer?' %>
 				<%= form.select :strength, Company.strengths.keys.to_a %>
-				
+
 			</div>		
 		<%=form.submit%>
 		<% end %>		
