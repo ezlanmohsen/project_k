@@ -10,6 +10,14 @@
   </head>
 
   <body>
+
+    <!-- From user authentication steps -->
+    <% if current_recruiter %>
+      Signed in as <%= current_recruiter.name %> | <%= link_to "Logout", '/logout' %>
+    <% else %>
+      <%= link_to 'Login', '/' %> | <%= link_to 'Signup', '/' %>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

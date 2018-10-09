@@ -3,7 +3,17 @@
 <div>
 	<h3>Have an account!</h3>
 	<p>Log in here!</p>
-	Del - Go to create new sessions
+	<div>
+		<!-- Form to create new session when recruiter log in -->
+		<%= form_tag('/login', :method => :post ) do %>
+		  Email: <%= text_field_tag :email %>
+		  Password: <%= password_field_tag :password %>
+		  <%= submit_tag "Submit" %>
+			<% flash.each do |key, value| %>
+			    <div> <%= value %> </div>
+			<% end %>
+		<% end %>
+	</div>
 </div>
 
 <br>
@@ -11,7 +21,22 @@
 <div>
 	<h3>Want to take your company to a greater height?</h3>
 	<p>Sign Up here</p>
-	Del - Go to create new recruiter
+
+	<div>
+		<!-- Form to create new recruiters -->
+		<%= form_for :recruiter, url: '/recruiters' do |f| %>
+
+		  Name: <%= f.text_field :name %>
+		  Email: <%= f.text_field :email %>
+		  Company Name: <%= f.text_field :company %>
+		  Mobile Num: <%= f.number_field :mobile %>
+		  Password: <%= f.password_field :password %>
+		  Password Confirmation: <%= f.password_field :password_confirmation %>
+		  <br>(DEL - TO ADD COMPANY)
+		  <%= f.submit "Submit" %>
+
+		<% end %>
+	</div>
 </div>
 
 
