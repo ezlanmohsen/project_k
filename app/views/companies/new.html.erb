@@ -1,0 +1,61 @@
+<div style="background-color: yellow">
+	<h3>NOTES FOR DEMONSTRATION</h3>
+	<ol>
+		<li>Upon sign up, we can (should) validate the recruiter either by calling them or call their company.</li>
+		<li>Optional - We can even fill up this page for them during the call.</li>
+	</ol>
+	<h4>Process: User sign up > User receives a call > User gets authorisation code > user go to this page</h4>
+</div>
+
+<div>
+	<h1>Build your company profile!</h1>
+	<h3>Help us promote you to the right candidates and reduce your spam!</h3>
+</div>
+
+<div>
+	Form to update (create) company
+
+	<div>
+		<%=form_for @company do |form|%>
+			<div>
+				<%= form.label :name %> 
+				<%= form.text_field :name, placeholder: 'Name of Company' %>
+			</div>
+			
+			<div>
+				<%= form.label :state %> 
+				<%= form.collection_select :state_id, State.all, :id, :name, :prompt => "Choose your state" %>
+			</div>
+
+			<div>
+				<%= form.label :industry %> 
+				<%= form.collection_select :industry_id, Industry.all, :id, :name, :prompt => "Choose your industry" %>
+			</div>
+
+			<div>
+				<%= form.label :workforce_size, 'Size of Company' %>
+				<%= form.select :workforce_size, Company.workforce_sizes.keys.to_a %>
+
+			</div>
+
+			<div>
+				<%= form.label :work_hours, 'Which would you prefer?' %>
+				<%= form.select :work_hours, Company.work_hours.keys.to_a %>
+
+			</div>
+
+			<div>
+				<%= form.label :strength, 'Which would you prefer?' %>
+				<%= form.select :strength, Company.strengths.keys.to_a %>
+				
+			</div>		
+		<%=form.submit%>
+		<% end %>		
+	</div>
+
+</div>
+
+<br>
+<br>
+<br>
+<h6>companies#new. Only for the recruiter of unregistered company after sign up.</h6>

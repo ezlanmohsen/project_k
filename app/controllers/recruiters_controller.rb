@@ -2,10 +2,9 @@ class RecruitersController < ApplicationController
 
     def create
 	  recruiter = Recruiter.new(recruiter_params)
-	  byebug
 	  if recruiter.save
-	    session[:recruiter_id] = recruiter_id.id
-	    redirect_to '/'
+	    session[:recruiter_id] = recruiter.id
+	    redirect_to new_company_path
 	    #change redirect later
 	  else
 	    redirect_to '/'

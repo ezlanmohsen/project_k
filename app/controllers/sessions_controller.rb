@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       # logged in when they navigate around our website.
       session[:recruiter_id] = recruiter.id
       flash[:success] = "Succesful Login"
-      redirect_to '/'
+      redirect_to company_path(Company.find_by_recruiter_id(session[:recruiter_id]))
     else
     # If user's login doesn't work, send them back to the login form.
       flash[:alert] = "Failed Login"

@@ -9,4 +9,7 @@ Rails.application.routes.draw do
 
 	post '/login' => 'sessions#create', :as => :create_session
 	get '/logout' => 'sessions#destroy'
+
+	resources :companies do
+	end
 end
