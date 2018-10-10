@@ -12,4 +12,8 @@ Rails.application.routes.draw do
 
 	resources :companies do
 	end
+
+	resources :vacancies do
+	end
+
 end

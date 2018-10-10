@@ -1,0 +1,45 @@
+<div style="background-color: yellow">
+	<h3>NOTES FOR DEMONSTRATION</h3>
+	<ol>
+	</ol>
+</div>
+
+<div>
+	<h1>Build the right pool for your vacancies!</h1>
+</div>
+
+<div>
+	<h4>What is your vacancy?</h4>
+	<div>
+
+		<%=form_for @vacancy do |form|%>
+			<div>
+				<%= form.label :name %> 
+				<%= form.text_field :name, placeholder: 'Name of Role' %>
+			</div>
+			
+			<div>
+				<%= form.label :description %> 
+				<%= form.text_field :description, placeholder: 'Describe this role' %>
+			</div>
+
+			<div>
+				<%= form.label :department %> 
+				<%= form.select(:department, Vacancy::DEPARTMENT_LIST, {:required => true}) %>
+			</div>
+
+			<div>
+				<%= form.label :quantity %> 
+				<%= form.select :quantity, ((1..9).map {|i| [i,i] } << [10,nil]) %>
+			</div>
+		
+			<%=form.submit%>
+		<% end %>
+	</div>
+</div>
+
+
+<br>
+<br>
+<br>
+<h6>vacancies#new. Page to create new vacancies. Main page when want to search</h6>

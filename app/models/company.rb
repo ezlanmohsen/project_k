@@ -6,5 +6,6 @@ class Company < ApplicationRecord
 	belongs_to :recruiter
 	belongs_to :industry
 	belongs_to :state
+	has_many :vacancies
 
 end
