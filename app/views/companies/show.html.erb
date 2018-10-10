@@ -56,16 +56,16 @@
 			<div>
 				Candidate Number: <%= jobseeker.id %><br>
 				Last Activity: <%= jobseeker.created_at.to_date %><br>
-				Degree in: <%= jobseeker.degree %><br>
-				University: <%= jobseeker.university %><br>
+				Degree in: <%= jobseeker.degree.name %><br>
+				University: <%= jobseeker.university.name %><br>
 				Latest CGPA: <%= jobseeker.cgpa %><br>
-				Location: <%= jobseeker.location %><br>
+				Location: <%= jobseeker.location.name %><br>
 				Prefers to work in <%= jobseeker.pref_size %> company<br>
 				Prefers to work  in <%= jobseeker.pref_hours %> hours<br>
 				Has worked for companies in:
-					<li><%= jobseeker.we1 %></li>
-					<li><%= jobseeker.we2 %></li>
-					<li><%= jobseeker.we3 %></li>
+					<li><%= jobseeker.we1.name %></li>
+					<li><%= jobseeker.we2.name %></li>
+					<li><%= jobseeker.we3.name %></li>
 				Knowledge Score: <%= jobseeker.knowledge_score %>%<br>
 				Skill Score: <%= jobseeker.skill_score %>%<br>
 				Activity Score: <%= jobseeker.activity_score %>%<br>

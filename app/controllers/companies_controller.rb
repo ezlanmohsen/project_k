@@ -16,16 +16,18 @@ class CompaniesController < ApplicationController
 	def show
 		@company = Company.find(params[:id])
 		if @company.less_than_20? && @company.nine_to_nine?
-			@jobseekers = Jobseeker.where("pref_size LIKE (?)", "Small").where("pref_hours LIKE (?)", "Traditional").where("location LIKE (?)", @company.state.name).where("degree LIKE (?)", @company.industry.name).where("we1 LIKE (?) OR we2 LIKE (?) or we3 LIKE (?)", @company.industry.name, @company.industry.name, @company.industry.name)
+			@jobseekers = Jobseeker.where("pref_size LIKE (?)", "Small").where("pref_hours LIKE (?)", "Traditional").where(location_id: @company.state).where(degree_id: @company.industry).where("we1_id LIKE (?) OR we2_id LIKE (?) or we3_id LIKE (?)", @company.industry, @company.industry, @company.industry)
 		elsif @company.less_than_20? && @company.work_at_home?
-			@jobseekers = Jobseeker.where("pref_size LIKE (?)", "Small").where("pref_hours LIKE (?)", "Modern").where("location LIKE (?)", @company.state.name).where("degree LIKE (?)", @company.industry.name).where("we1 LIKE (?) OR we2 LIKE (?) or we3 LIKE (?)", @company.industry.name, @company.industry.name, @company.industry.name)
+			@jobseekers = Jobseeker.where("pref_size LIKE (?)", "Small").where("pref_hours LIKE (?)", "Modern").where(location_id: @company.state).where(degree_id: @company.industry).where("we1_id LIKE (?) OR we2_id LIKE (?) or we3_id LIKE (?)", @company.industry, @company.industry, @company.industry)
 		elsif @company.more_than_20? && @company.work_at_home?
-			@jobseekers = Jobseeker.where("pref_size LIKE (?)", "Big").where("pref_hours LIKE (?)", "Modern").where("location LIKE (?)", @company.state.name).where("degree LIKE (?)", @company.industry.name).where("we1 LIKE (?) OR we2 LIKE (?) or we3 LIKE (?)", @company.industry.name, @company.industry.name, @company.industry.name)
+			@jobseekers = Jobseeker.where("pref_size LIKE (?)", "Big").where("pref_hours LIKE (?)", "Modern").where(location_id: @company.state).where(degree_id: @company.industry).where("we1_id LIKE (?) OR we2_id LIKE (?) or we3_id LIKE (?)", @company.industry, @company.industry, @company.industry)
 		elsif @company.more_than_20? && @company.nine_to_nine?
-			@jobseekers = Jobseeker.where("pref_size LIKE (?)", "Big").where("pref_hours LIKE (?)", "Traditional").where("location LIKE (?)", @company.state.name).where("degree LIKE (?)", @company.industry.name).where("we1 LIKE (?) OR we2 LIKE (?) or we3 LIKE (?)", @company.industry.name, @company.industry.name, @company.industry.name)
+			@jobseekers = Jobseeker.where("pref_size LIKE (?)", "Big").where("pref_hours LIKE (?)", "Traditional").where(location_id: @company.state).where(degree_id: @company.industry).where("we1_id LIKE (?) OR we2_id LIKE (?) or we3_id LIKE (?)", @company.industry, @company.industry, @company.industry)
 		else
-			@jobseekers = Jobseeker.where("location LIKE (?)", @company.state.name).where("degree LIKE (?)", @company.industry.name).where("we1 LIKE (?) OR we2 LIKE (?) or we3 LIKE (?)", @company.industry.name, @company.industry.name, @company.industry.name)
+			@jobseekers = Jobseeker.where(location_id: @company.state).where(degree_id: @company.industry).where("we1_id LIKE (?) OR we2_id LIKE (?) or we3_id LIKE (?)", @company.industry, @company.industry, @company.industry)
 		end
+
+
 
 	end
 

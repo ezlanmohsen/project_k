@@ -8,50 +8,125 @@
 
 # # Creating Industry
 
-# Industry.destroy_all
+Industry.destroy_all
 
-# Industry.create([
-# 	{name: "Agriculture, forestry and fishing"},
-# 	{name: "Mining and quarrying"},
-# 	{name: "Manufacturing"},
-# 	{name: "Construction"},
-# 	{name: "Wholesale and retail"},
-# 	{name: "Transporting and storage"},
-# 	{name: "Accommodation and food service"},
-# 	{name: "Information and communication"},
-# 	{name: "Financial and insurance"},
-# 	{name: "Administrative and support"},
-# 	{name: "Public administration and defence"},
-# 	{name: "Education"},
-# 	{name: "Human health and social work"},
-# 	{name: "Arts, entertainment and recreation"},
-# 	{name: "Others"},
-# ])
+Industry.create([
+	{name: "Agriculture, forestry and fishing"},
+	{name: "Mining and quarrying"},
+	{name: "Manufacturing"},
+	{name: "Construction"},
+	{name: "Wholesale and retail"},
+	{name: "Transporting and storage"},
+	{name: "Accommodation and food service"},
+	{name: "Information and communication"},
+	{name: "Financial and insurance"},
+	{name: "Administrative and support"},
+	{name: "Public administration and defence"},
+	{name: "Education"},
+	{name: "Human health and social work"},
+	{name: "Arts, entertainment and recreation"},
+	{name: "Others"},
+])
 
-# p "Seeded #{Industry.count} entries for Industry"
+p "Seeded #{Industry.count} entries for Industry"
 
 # #Seeding States
-# State.destroy_all
+State.destroy_all
 
-# State.create([
-# 	{name: "Perlis"},
-# 	{name: "Kedah"},
-# 	{name: "Penang"},
-# 	{name: "Perak"},
-# 	{name: "Kelantan"},
-# 	{name: "Terengganu"},
-# 	{name: "Pahang"},
-# 	{name: "Selangor"},
-# 	{name: "Kuala Lumpur"},
-# 	{name: "Negeri Sembilan"},
-# 	{name: "Melaka"},
-# 	{name: "Johor"},
-# 	{name: "Sarawak"},
-# 	{name: "Sabah"},
-# 	{name: "Labuan"},
-# ])
+State.create([
+	{name: "Perlis"},
+	{name: "Kedah"},
+	{name: "Penang"},
+	{name: "Perak"},
+	{name: "Kelantan"},
+	{name: "Terengganu"},
+	{name: "Pahang"},
+	{name: "Selangor"},
+	{name: "Kuala Lumpur"},
+	{name: "Negeri Sembilan"},
+	{name: "Melaka"},
+	{name: "Johor"},
+	{name: "Sarawak"},
+	{name: "Sabah"},
+	{name: "Labuan"},
+])
 
-# p "Seeded #{State.count} entries for state"
+p "Seeded #{State.count} entries for state"
+
+
+# #Seeding University
+University.destroy_all
+
+University.create([
+    {name: "Universiti Malaya"},
+    {name: "Universiti Kebangsaan Malaysia"},
+    {name: "Universiti Putra Malaysia"},
+    {name: "Universiti Sains Malaysia"},
+    {name: "Universiti Teknologi Malaysia"},
+    {name: "Universiti Teknologi Petronas"},
+    {name: "Lim Kok Wing university"},
+    {name: "Taylor's University"},
+    {name: "Help University"},
+])
+
+p "Seeded #{University.count} entries for university"
+
+
+# #Seeding Topic
+Topic.destroy_all
+
+Topic.create([
+    {name: "Arts & Culture"},
+    {name: "Business & Finance"},
+    {name: "Basic Sciences"},
+    {name: "Economics"},
+    {name: "Government & Politics"},
+    {name: "Information Technology"},
+    {name: "Sports & Recreation"},
+    {name: "Media"},
+    {name: "Education"},
+    {name: "Entrepreneurship"}
+
+])
+
+p "Seeded #{Topic.count} entries for topic"
+
+
+# #Seeding Skill
+Skill.destroy_all
+
+Skill.create([
+    {name: "Writing"},
+    {name: "Programming"},
+    {name: "Marketing"},
+    {name: "Communications"},
+    {name: "Researching"},
+    {name: "Project"},
+    {name: "Management"},
+    {name: "Analytics"},
+    {name: "Inventing"}
+])
+
+p "Seeded #{Skill.count} entries for Skill"
+
+
+# #Seeding Activity
+Activity.destroy_all
+
+Activity.create([
+    {name: "Volunteering"},
+    {name: "Sports"},
+    {name: "Debating"},
+    {name: "Student Association"},
+    {name: "Travelling"},
+    {name: "Entrepreneurship"},
+    {name: "Civil Activism"}
+
+])
+
+p "Seeded #{Activity.count} entries for Activity"
+
+
 
 # Seeding Jobseekers
 
@@ -60,34 +135,30 @@ Jobseeker.destroy_all
 jobseeker = {}
 
 ActiveRecord::Base.transaction do
-  2000.times do 
+  5000.times do 
     jobseeker['name'] = Faker::Name.name  
     jobseeker['email'] = Faker::Internet.email
-    jobseeker['degree'] = ["Manufacturing", "Financial and insurance", "Public administration and defence", "Human health and social work", "Agriculture, forestry and fishing", "Education", "Information and communication", "Arts, entertainment and recreation"].sample
-    jobseeker['university'] = ["Universiti Malaya", "Universiti Kebangsaan Malaysia", "Universiti Putra Malaysia", "Universiti Sains Malaysia", "Universiti Teknologi Malaysia", "Universiti Teknologi Petronas", "Lim Kok Wing university", "Taylor's University", "Help University"].sample
+    jobseeker['location'] = State.find(Faker::Number.between(1, 15))
+    jobseeker['degree'] = Industry.find(Faker::Number.between(1, 15))
+    jobseeker['university'] = University.find(Faker::Number.between(1, 9))
     jobseeker['cgpa'] = [2.01, 2.50, 3.00, 3.50, 3.61, 3.75, 3.83, 3.91].sample
-    jobseeker['location'] = ["Kuala Lumpur", "Selangor", "Penang", "Sarawak", "Sabah", "Perlis", "Kedah", "Terengganu", "Johor", "Negeri Sembilan", "Kelantan", "Pahang"].sample
     jobseeker['pref_size'] = ["Small", "Big"].sample
     jobseeker['pref_hours'] = ["Traditional", "Modern"].sample
-    jobseeker['we1'] = ["Manufacturing", "Financial and insurance", "Public administration and defence", "Human health and social work", "Agriculture, forestry and fishing", "Education", "Information and communication", "Arts, entertainment and recreation"].sample
-    jobseeker['we2'] = ["Manufacturing", "Financial and insurance", "Public administration and defence", "Human health and social work", "Agriculture, forestry and fishing", "Education", "Information and communication", "Arts, entertainment and recreation"].sample
-    jobseeker['we3'] = ["Manufacturing", "Financial and insurance", "Public administration and defence", "Human health and social work", "Agriculture, forestry and fishing", "Education", "Information and communication", "Arts, entertainment and recreation"].sample
+    jobseeker['we1'] = Industry.find(Faker::Number.between(1, 15))
+    jobseeker['we2'] = Industry.find(Faker::Number.between(1, 15))
+    jobseeker['we3'] = Industry.find(Faker::Number.between(1, 15))
     jobseeker['knowledge_score'] = Faker::Number.between(30, 100)
     jobseeker['skill_score'] = Faker::Number.between(30, 100)
     jobseeker['activity_score'] = Faker::Number.between(30, 100)
-    jobseeker['knowledge1'] = ["Arts & Culture", "Business & Finance", "Basic Sciences", "Economics", "Government & Politics", "Information Technology", "Sports & Recreation", "Media", "Education", "Entrepreneurship"].sample
-    jobseeker['knowledge2'] = ["Arts & Culture", "Business & Finance", "Basic Sciences", "Economics", "Government & Politics", "Information Technology", "Sports & Recreation", "Media", "Education", "Entrepreneurship"].sample
-    jobseeker['knowledge3'] = ["Arts & Culture", "Business & Finance", "Basic Sciences", "Economics", "Government & Politics", "Information Technology", "Sports & Recreation", "Media", "Education", "Entrepreneurship"].sample
-    jobseeker['skill1'] = ["Writing", "Programming", "Marketing", "Communications", "Researching", "Project Management", "Analytics", "Inventing" ].sample
-    jobseeker['skill2'] = ["Writing", "Programming", "Marketing", "Communications", "Researching", "Project Management", "Analytics", "Inventing" ].sample
-    jobseeker['skill3'] = ["Writing", "Programming", "Marketing", "Communications", "Researching", "Project Management", "Analytics", "Inventing" ].sample
-    jobseeker['activity1'] = ["Volunteering", "Sports", "Debating", "Student Association", "Travelling", "Entrepreneurship", "Civil Activism"].sample
-    jobseeker['activity2'] = ["Volunteering", "Sports", "Debating", "Student Association", "Travelling", "Entrepreneurship", "Civil Activism"].sample
-    jobseeker['activity3'] = ["Volunteering", "Sports", "Debating", "Student Association", "Travelling", "Entrepreneurship", "Civil Activism"].sample
+    jobseeker['top_knowledge'] = Topic.find(Faker::Number.between(1, 10))
+    jobseeker['top_skill'] = Skill.find(Faker::Number.between(1, 9))
+    jobseeker['top_activity'] = Activity.find(Faker::Number.between(1, 7))
     Jobseeker.create(jobseeker)
   end
 end 
 
 p "Seeded #{Jobseeker.count} entries for Jobseekers"
+
+
 
 

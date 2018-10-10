@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_10_104529) do
+ActiveRecord::Schema.define(version: 2018_10_10_163731) do
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name", null: false
@@ -36,29 +42,32 @@ ActiveRecord::Schema.define(version: 2018_10_10_104529) do
   create_table "jobseekers", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", null: false
-    t.string "degree", null: false
-    t.string "university", null: false
+    t.integer "location_id"
+    t.integer "degree_id"
+    t.integer "university_id"
     t.decimal "cgpa", precision: 4, scale: 2, null: false
-    t.string "location", null: false
     t.string "pref_size", null: false
     t.string "pref_hours", null: false
-    t.string "we1", null: false
-    t.string "we2", null: false
-    t.string "we3", null: false
+    t.integer "we1_id"
+    t.integer "we2_id"
+    t.integer "we3_id"
     t.integer "knowledge_score", null: false
     t.integer "skill_score", null: false
     t.integer "activity_score", null: false
-    t.string "knowledge1", null: false
-    t.string "knowledge2", null: false
-    t.string "knowledge3", null: false
-    t.string "skill1", null: false
-    t.string "skill2", null: false
-    t.string "skill3", null: false
-    t.string "activity1", null: false
-    t.string "activity2", null: false
-    t.string "activity3", null: false
+    t.integer "top_knowledge_id"
+    t.integer "top_skill_id"
+    t.integer "top_activity_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["degree_id"], name: "index_jobseekers_on_degree_id"
+    t.index ["location_id"], name: "index_jobseekers_on_location_id"
+    t.index ["top_activity_id"], name: "index_jobseekers_on_top_activity_id"
+    t.index ["top_knowledge_id"], name: "index_jobseekers_on_top_knowledge_id"
+    t.index ["top_skill_id"], name: "index_jobseekers_on_top_skill_id"
+    t.index ["university_id"], name: "index_jobseekers_on_university_id"
+    t.index ["we1_id"], name: "index_jobseekers_on_we1_id"
+    t.index ["we2_id"], name: "index_jobseekers_on_we2_id"
+    t.index ["we3_id"], name: "index_jobseekers_on_we3_id"
   end
 
   create_table "recruiters", force: :cascade do |t|
@@ -71,7 +80,25 @@ ActiveRecord::Schema.define(version: 2018_10_10_104529) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "skills", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "states", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "universities", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

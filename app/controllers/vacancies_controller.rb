@@ -18,6 +18,9 @@ class VacanciesController < ApplicationController
 	def show
 		@vacancy = Vacancy.find(params[:id])
 		@company = Company.find(@vacancy.company.id)
+		@jobseekers = Jobseeker.where("location LIKE (?)", @company.state.name).where("we1 LIKE (?) OR we2 LIKE (?) or we3 LIKE (?)", @company.industry.name, @company.industry.name, @company.industry.name)
+
+
 	end
 
 	private
