@@ -6,52 +6,52 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Creating Industry
+# # Creating Industry
 
-Industry.destroy_all
+# Industry.destroy_all
 
-Industry.create([
-	{name: "Agriculture, forestry and fishing"},
-	{name: "Mining and quarrying"},
-	{name: "Manufacturing"},
-	{name: "Construction"},
-	{name: "Wholesale and retail"},
-	{name: "Transporting and storage"},
-	{name: "Accommodation and food service"},
-	{name: "Information and communication"},
-	{name: "Financial and insurance"},
-	{name: "Administrative and support"},
-	{name: "Public administration and defence"},
-	{name: "Education"},
-	{name: "Human health and social work"},
-	{name: "Arts, entertainment and recreation"},
-	{name: "Others"},
-])
+# Industry.create([
+# 	{name: "Agriculture, forestry and fishing"},
+# 	{name: "Mining and quarrying"},
+# 	{name: "Manufacturing"},
+# 	{name: "Construction"},
+# 	{name: "Wholesale and retail"},
+# 	{name: "Transporting and storage"},
+# 	{name: "Accommodation and food service"},
+# 	{name: "Information and communication"},
+# 	{name: "Financial and insurance"},
+# 	{name: "Administrative and support"},
+# 	{name: "Public administration and defence"},
+# 	{name: "Education"},
+# 	{name: "Human health and social work"},
+# 	{name: "Arts, entertainment and recreation"},
+# 	{name: "Others"},
+# ])
 
-p "Seeded #{Industry.count} entries for Industry"
+# p "Seeded #{Industry.count} entries for Industry"
 
-#Seeding States
-State.destroy_all
+# #Seeding States
+# State.destroy_all
 
-State.create([
-	{name: "Perlis"},
-	{name: "Kedah"},
-	{name: "Penang"},
-	{name: "Perak"},
-	{name: "Kelantan"},
-	{name: "Terengganu"},
-	{name: "Pahang"},
-	{name: "Selangor"},
-	{name: "Kuala Lumpur"},
-	{name: "Negeri Sembilan"},
-	{name: "Melaka"},
-	{name: "Johor"},
-	{name: "Sarawak"},
-	{name: "Sabah"},
-	{name: "Labuan"},
-])
+# State.create([
+# 	{name: "Perlis"},
+# 	{name: "Kedah"},
+# 	{name: "Penang"},
+# 	{name: "Perak"},
+# 	{name: "Kelantan"},
+# 	{name: "Terengganu"},
+# 	{name: "Pahang"},
+# 	{name: "Selangor"},
+# 	{name: "Kuala Lumpur"},
+# 	{name: "Negeri Sembilan"},
+# 	{name: "Melaka"},
+# 	{name: "Johor"},
+# 	{name: "Sarawak"},
+# 	{name: "Sabah"},
+# 	{name: "Labuan"},
+# ])
 
-p "Seeded #{State.count} entries for state"
+# p "Seeded #{State.count} entries for state"
 
 # Seeding Jobseekers
 
@@ -60,13 +60,13 @@ Jobseeker.destroy_all
 jobseeker = {}
 
 ActiveRecord::Base.transaction do
-  10.times do 
+  2000.times do 
     jobseeker['name'] = Faker::Name.name  
     jobseeker['email'] = Faker::Internet.email
-    jobseeker['degree'] = ["Computer Science", "Software Engineering", "Accounting & Finance", "Banking & Finance", "Economics", "Business Management", "Engineering", "Marketing Communications", "Hospitality Management", "Multimedia Design", "Law", "Politics"].sample
-    jobseeker['university'] = ["Universiti Malaya", "Universiti Kebangsaan Malaysia", "Universiti Putra Malaysia", "Universiti Sains Malaysia", "Universiti Teknologi Malaysia", "Universiti Teknologi Petronas", "Lim Kok Wing university", "Taylor's University", "Help University", ""].sample
+    jobseeker['degree'] = ["Manufacturing", "Financial and insurance", "Public administration and defence", "Human health and social work", "Agriculture, forestry and fishing", "Education", "Information and communication", "Arts, entertainment and recreation"].sample
+    jobseeker['university'] = ["Universiti Malaya", "Universiti Kebangsaan Malaysia", "Universiti Putra Malaysia", "Universiti Sains Malaysia", "Universiti Teknologi Malaysia", "Universiti Teknologi Petronas", "Lim Kok Wing university", "Taylor's University", "Help University"].sample
     jobseeker['cgpa'] = [2.01, 2.50, 3.00, 3.50, 3.61, 3.75, 3.83, 3.91].sample
-    jobseeker['location'] = ["Kuala Lumpur", "Selangor", "Penang", "Sarawak", "Sabah"].sample
+    jobseeker['location'] = ["Kuala Lumpur", "Selangor", "Penang", "Sarawak", "Sabah", "Perlis", "Kedah", "Terengganu", "Johor", "Negeri Sembilan", "Kelantan", "Pahang"].sample
     jobseeker['pref_size'] = ["Small", "Big"].sample
     jobseeker['pref_hours'] = ["Traditional", "Modern"].sample
     jobseeker['we1'] = ["Manufacturing", "Financial and insurance", "Public administration and defence", "Human health and social work", "Agriculture, forestry and fishing", "Education", "Information and communication", "Arts, entertainment and recreation"].sample
@@ -88,6 +88,6 @@ ActiveRecord::Base.transaction do
   end
 end 
 
-p "Seeded #{Jobseeker.count} entries for Point"
+p "Seeded #{Jobseeker.count} entries for Jobseekers"
 
 

@@ -4,7 +4,6 @@
 		<li>This is the main page. In normal day, this is the first page after recruiter login</li>
 		<li>Recruiter can do 2 key things: 1)Set general filters for their companies and see who matched them 2)Create a specific vacancy</li>
 	</ol>
-
 </div>
 
 <div>
@@ -28,12 +27,58 @@
 <br>
 
 <div>
-	<h3>They matched your filters and want to work with you!</h3>
-	<h4>(Search Filters - so they can  further search this list of profiles)</h4>
+	<h3><%=@jobseekers.count%> candidate(s) matched your general filters and liked you back!</h3>
+
 	<div>
-		Profile of jobseeker 1 <br>
-		Profile of jobseeker 2 <br>
-		Profile of jobseeker 3 <br>
+		<ol>Filters in action!</ol>
+			<li>Someone who is based in <%= @company.state.name %></li>
+			<li>Someone who prefers to work in size <%= @company.workforce_size %> company</li>
+			<li>Someone with a degree in <%= @company.industry.name %></li>
+			<li>Someone with at least 1 working experience in <%= @company.industry.name %></li>
+			<li>Someone who prefers the working style of <%= @company.work_hours %></li>
+	</div>
+
+	<h4>(Search Filters - so they can  further search this list of profiles)</h4>
+
+	<div style="background-color: yellow">
+		<h3>NOTES FOR DEMONSTRATION</h3>
+		<ol>
+			<li>This is by default filters. Recruiter can just close any filters to remove them</li>
+			<li>The search will work on suggestive manner - ie Recruiter will be shown filters to be clicked on, not type their filters</li>
+		</ol>
+	</div>
+
+
+
+
+	<div>
+		<% @jobseekers.each do |jobseeker|%>
+			<div>
+				Candidate Number: <%= jobseeker.id %><br>
+				Last Activity: <%= jobseeker.created_at.to_date %><br>
+				Degree in: <%= jobseeker.degree %><br>
+				University: <%= jobseeker.university %><br>
+				Latest CGPA: <%= jobseeker.cgpa %><br>
+				Location: <%= jobseeker.location %><br>
+				Prefers to work in <%= jobseeker.pref_size %> company<br>
+				Prefers to work  in <%= jobseeker.pref_hours %> hours<br>
+				Has worked for companies in:
+					<li><%= jobseeker.we1 %></li>
+					<li><%= jobseeker.we2 %></li>
+					<li><%= jobseeker.we3 %></li>
+				Knowledge Score: <%= jobseeker.knowledge_score %>%<br>
+				Skill Score: <%= jobseeker.skill_score %>%<br>
+				Activity Score: <%= jobseeker.activity_score %>%<br>
+				<br>
+				<div>
+					Preview Profile (link to user profile) <br>
+					Add to Interview Pool (action button)
+				</div>
+			</div>
+			<br>
+			<br>
+			<br>
+		<% end %>
 	</div>
 </div>
 
