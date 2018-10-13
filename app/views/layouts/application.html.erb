@@ -13,7 +13,7 @@
 
     <!-- From user authentication steps -->
     <% if current_recruiter %>
-      Signed in as <%= current_recruiter.name %> | <%= link_to "Logout", '/logout' %>
+      Signed in as <%= current_recruiter.name %> | <%= link_to "Your Company", company_path(current_recruiter) %> | <%= link_to "Logout", '/logout' %>
     <% else %>
       <%= link_to 'Login', '/' %> | <%= link_to 'Signup', '/' %>
     <% end %>
