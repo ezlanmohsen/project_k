@@ -27,7 +27,7 @@ class CompaniesController < ApplicationController
 			@jobseekers = Jobseeker.where(location_id: @company.state).where(degree_id: @company.industry).where("we1_id LIKE (?) OR we2_id LIKE (?) or we3_id LIKE (?)", @company.industry, @company.industry, @company.industry)
 		end
 
-
+		@vacancies = Vacancy.where(company_id: params[:id])
 
 	end
 

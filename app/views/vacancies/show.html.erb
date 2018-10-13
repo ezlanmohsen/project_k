@@ -4,8 +4,15 @@
 	</ol>
 </div>
 
+<h3>Company Profile</h3>
 <div>
-	Company: <%= @company.name %><br>
+	Name: <%= @company.name %><br>
+	State: <%= @company.state.name %><br>
+	Industry: <%= @company.industry.name %><br>
+</div>
+
+<h3>Vacancy Details</h3>
+<div>
 	Role: <%= @vacancy.name %><br>
 	Description: <%= @vacancy.description %><br>
 	Department: <%= @vacancy.department %><br>
@@ -26,41 +33,42 @@
 
 			<ol>Filters in action!</ol>
 				<li>Someone who is based in <%= @company.state.name %></li>
-				<li>Someone with at least 1 working experience in <%= @company.industry.name %></li>
+				<li>Someone with any working experience related to: <%= @company.industry.name %></li>
 		</div>
 
 		<br>
 		<br>
 		<br>
 	</div>
-		<div>
-			<% @jobseekers.each do |jobseeker|%>
+
+	<div>
+		<% @jobseekers.each do |jobseeker|%>
+			<div>
+				Candidate Number: <%= jobseeker.id %><br>
+				Last Activity: <%= jobseeker.created_at.to_date %><br>
+				Degree in: <%= jobseeker.degree.name %><br>
+				University: <%= jobseeker.university.name %><br>
+				Latest CGPA: <%= jobseeker.cgpa %><br>
+				Location: <%= jobseeker.location.name %><br>
+				Prefers to work in <%= jobseeker.pref_size %> company<br>
+				Prefers to work  in <%= jobseeker.pref_hours %> hours<br>
+				Has worked for companies in:
+					<li><%= jobseeker.we1.name %></li>
+					<li><%= jobseeker.we2.name %></li>
+					<li><%= jobseeker.we3.name %></li>
+				Knowledge Score: <%= jobseeker.knowledge_score %>%<br>
+				Skill Score: <%= jobseeker.skill_score %>%<br>
+				Activity Score: <%= jobseeker.activity_score %>%<br>
+				<br>
 				<div>
-					Candidate Number: <%= jobseeker.id %><br>
-					Last Activity: <%= jobseeker.created_at.to_date %><br>
-					Degree in: <%= jobseeker.degree %><br>
-					University: <%= jobseeker.university %><br>
-					Latest CGPA: <%= jobseeker.cgpa %><br>
-					Location: <%= jobseeker.location %><br>
-					Prefers to work in <%= jobseeker.pref_size %> company<br>
-					Prefers to work  in <%= jobseeker.pref_hours %> hours<br>
-					Has worked for companies in:
-						<li><%= jobseeker.we1 %></li>
-						<li><%= jobseeker.we2 %></li>
-						<li><%= jobseeker.we3 %></li>
-					Knowledge Score: <%= jobseeker.knowledge_score %>%<br>
-					Skill Score: <%= jobseeker.skill_score %>%<br>
-					Activity Score: <%= jobseeker.activity_score %>%<br>
-					<br>
-					<div>
-						Preview Profile (link to user profile) <br>
-						Add to Interview Pool (action button)
-					</div>
+					Preview Profile (link to user profile) <br>
+					Add to Interview Pool (action button)
 				</div>
-				<br>
-				<br>
-				<br>
-			<% end %>
-		</div>
+			</div>
+			<br>
+			<br>
+			<br>
+		<% end %>
+	</div>
 </div>
 

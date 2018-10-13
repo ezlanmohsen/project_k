@@ -85,8 +85,27 @@
 <br>
 <br>
 
+<div style="border: 2px red solid">
+	<h4>Your Vacancies!</h4>
+	<div>
+		<% @vacancies.each do |v| %>
+			<div style="border: 2px solid blue">
+				Name of role: <%= v.name %><br>
+				Description: <%= v.description %><br>
+				Department: <%= v.department %><br>
+				Quantity: <%= v.quantity %><br>
+				<%= link_to "Check out this vacancy", vacancy_path(v) %>
+
+			</div>
+		<% end %>
+	</div>
+</div>
+
+<br>
+<br>
+
 <div style="border: 1px solid red; text-align: center;">
-	<h3>CREATE A VACANCY!</h3>
+	<h3><%= link_to "Create New Vacancy", new_vacancy_path %></h3>
 </div>
 
 
