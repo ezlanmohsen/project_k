@@ -117,7 +117,7 @@
 					</div>
 				</div>
 				<% if v.question_1 =! nil %>
-					<%= link_to "Get your result!", vacancy_path(v) %>
+					<%= link_to "Get your result!", vacancy_interview_results_path(v) %>
 				<% else %>
 					<%= link_to "Check out this vacancy", vacancy_path(v) %>
 				<% end %>

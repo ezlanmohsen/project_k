@@ -1,0 +1,44 @@
+
+<div style="background-color: yellow">
+	<h3>NOTES FOR DEMONSTRATION</h3>
+	<ol>
+	</ol>
+</div>
+
+<h3>Company Profile</h3>
+<div>
+	Name: <%= @company.name %><br>
+	State: <%= @company.state.name %><br>
+	Industry: <%= @company.industry.name %><br>
+</div>
+
+<h3>Vacancy Details</h3>
+<div>
+	Role: <%= @vacancy.name %><br>
+	Description: <%= @vacancy.description %><br>
+	Department: <%= @vacancy.department %><br>
+	Quantity Needed: <%= @vacancy.quantity %><br>
+</div>
+
+<div>
+	<h4>This is the result!</h4>
+	<div>
+		<% @matches.each do |match| %>
+				Candidate Number: <%= match.jobseeker.id %><br>
+				Degree in: <%= match.jobseeker.degree.name %><br>
+				University: <%= match.jobseeker.university.name %><br>
+				Status: Accepted<br>
+				<img src="https://upload.wikimedia.org/wikipedia/commons/7/72/YouTube_social_white_square_%282017%29.svg" style="height: 100px; width: 100px;">
+				<br>
+				<%= link_to "Add this jobseeker to your cart!", root_path %><br>
+				<%= link_to "Reject this candidate!", root_path %>
+				<br><br><br>
+		<% end %>
+	</div>
+</div>
+
+
+<br>
+<br>
+<br>
+<h6>vacancies#results. This is where recruiters check status.</h6>

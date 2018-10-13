@@ -54,6 +54,12 @@ class VacanciesController < ApplicationController
 		end
 	end
 
+	def results
+		@vacancy = Vacancy.find(params[:vacancy_id])
+		@company = Company.find(@vacancy.company.id)
+		@matches = JobseekerVacancy.where(vacancy_id: @vacancy.id)
+	end
+
 	private
 
 	def vacancy_params
