@@ -31,9 +31,66 @@
 
 			</div>
 
-			<ol>Filters in action!</ol>
+			<ol>Filters in action!
 				<li>Someone who is based in <%= @company.state.name %></li>
 				<li>Someone with any working experience related to: <%= @company.industry.name %></li>
+				<% if params[:degree] %>
+					<li> Someone with a degree in <%= Industry.find(params[:degree]).name %> </li>
+				<% end %>
+				<% if params[:knowledge] %>
+					<li> Someone with high knowledge in <%= Topic.find(params[:knowledge]).name %> </li>
+				<% end %>
+				<% if params[:skill] %>
+					<li> Someone with high skill in <%= Skill.find(params[:skill]).name %> </li>
+				<% end %>
+				<% if params[:activity] %>
+					<li> Someone with big involvement in <%= Activity.find(params[:activity]).name %> </li>
+				<% end %>
+			</ol>
+
+			<div>
+				<!-- Search by advanced filters -->
+				<div>
+					<h4>Degree:</h4>
+						<% @degrees.each do |degree| %>
+							<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
+								<%= hidden_field_tag  :degree, degree.id %>
+								<%= submit_tag degree.name, :name => nil %>
+							<% end %>
+						<% end %>
+				</div>
+
+				<div>
+					<h4>Top Knowledge:</h4>
+						<% @knowledges.each do |knowledge| %>
+							<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
+								<%= hidden_field_tag  :knowledge, knowledge.id %>
+								<%= submit_tag knowledge.name, :name => nil %>
+							<% end %>
+						<% end %>
+				</div>
+
+				<div>
+					<h4>Top Skill:</h4>
+						<% @skills.each do |skill| %>
+							<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
+								<%= hidden_field_tag  :skill, skill.id %>
+								<%= submit_tag skill.name, :name => nil %>
+							<% end %>
+						<% end %>
+				</div>
+
+				<div>
+					<h4>Top Activity:</h4>
+						<% @activities.each do |activity| %>
+							<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
+								<%= hidden_field_tag  :activity, activity.id %>
+								<%= submit_tag activity.name, :name => nil %>
+							<% end %>
+						<% end %>
+				</div>
+			</div>
+
 		</div>
 
 		<br>
