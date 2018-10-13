@@ -17,4 +17,16 @@ class Vacancy < ApplicationRecord
   	'Operations & Production',
   	'Research & Development'
   ]
+
+  QUESTION_LIST = [
+    'Why do you want this job?',
+    'What do you know about the company?',
+    'What are your greatest professional strengths?',
+    'What do you consider to be your weaknesses?',
+    'Tell me about a challenge or conflict you have faced at university, and how you dealt with it.',
+    'Where do you see yourself in five years?',
+    'What type of work environment do you prefer?',
+    'How do you deal with pressure or stressful situations?',
+    'What would your first 30, 60, or 90 days look like in this role?'
+  ]
 end

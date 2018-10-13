@@ -22,6 +22,7 @@ class VacanciesController < ApplicationController
 		@knowledges = Topic.all
 		@skills = Skill.all
 		@activities = Activity.all
+		@matches = JobseekerVacancy.where(vacancy_id: params[:id])
 
 	  	if params[:degree] 
 	      	@jobseekers = Jobseeker.where(location_id: @company.state).where("we1_id LIKE (?) OR we2_id LIKE (?) or we3_id LIKE (?)", @company.industry, @company.industry, @company.industry).where(degree_id: params[:degree])
@@ -36,11 +37,21 @@ class VacanciesController < ApplicationController
 	    end
 
 	    @match = JobseekerVacancy.new
+	end
 
+	def interview
+		@vacancy = Vacancy.find(params[:vacancy_id])
+		@company = Company.find(@vacancy.company.id)
+		@matches = JobseekerVacancy.where(vacancy_id: @vacancy.id)	
+	end
 
-
-
-
+	def update
+		@vacancy = Vacancy.find(params[:id])
+		if @vacancy.update(vacancy_params)
+			redirect_to company_path(current_recruiter)
+		else
+			redirect_back(fallback_location: root_path)
+		end
 	end
 
 	private

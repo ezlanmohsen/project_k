@@ -94,7 +94,34 @@
 				Description: <%= v.description %><br>
 				Department: <%= v.department %><br>
 				Quantity: <%= v.quantity %><br>
-				<%= link_to "Check out this vacancy", vacancy_path(v) %>
+				Size of talent pool: <%= v.jobseekers.count %> jobseekers!<br>
+				<br><br>
+				<div>
+					List of questions!
+					<div>
+						Question 1: <%= v.question_1 %><br>
+						Duration: <%= v.q1_time %>seconds<br>
+						<br>
+						Question 2: <%= v.question_2 %><br>
+						Duration: <%= v.q2_time %>seconds<br>
+						<br>
+						Question 3: <%= v.question_3 %><br>
+						Duration: <%= v.q3_time %>seconds<br>
+						<br>
+						Question 4: <%= v.question_4 %><br>
+						Duration: <%= v.q4_time %>seconds<br>
+						<br>
+						Question 5: <%= v.question_5 %><br>
+						Duration: <%= v.q5_time %>seconds<br>
+						<br>
+					</div>
+				</div>
+				<% if v.question_1 =! nil %>
+					<%= link_to "Get your result!", vacancy_path(v) %>
+				<% else %>
+					<%= link_to "Check out this vacancy", vacancy_path(v) %>
+				<% end %>
+
 
 			</div>
 		<% end %>

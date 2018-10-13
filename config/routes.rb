@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 	end
 
 	resources :vacancies do
+		get '/interview' => 'vacancies#interview', :as => :interview
 	end
 
 	post '/vacancies/:vacancy_id/jobseeker_vacancies' => 'jobseeker_vacancies#create', :as => :create_match

@@ -127,6 +127,11 @@ ActiveRecord::Schema.define(version: 2018_10_13_173803) do
     t.string "question_5"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "q1_time"
+    t.integer "q2_time"
+    t.integer "q3_time"
+    t.integer "q4_time"
+    t.integer "q5_time"
     t.index ["company_id"], name: "index_vacancies_on_company_id"
     t.index ["recruiter_id"], name: "index_vacancies_on_recruiter_id"
   end

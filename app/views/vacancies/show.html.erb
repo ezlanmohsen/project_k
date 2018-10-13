@@ -34,6 +34,10 @@
 
 		<div>
 			<h4>Total candidates matching filters: <%= @jobseekers.count %></h4>
+			<h4>Total candidates in your pool: <%= @matches.count %></h4>
+			<div>
+				<%= link_to "NEXT!", vacancy_interview_path(@vacancy) %>
+			</div>
 
 			<div>
 
@@ -139,12 +143,7 @@
 							<%=form.submit "I like this candidate"%>
 							<% end %>
 						</div>
-					<% end %>
-
-
-
-	
-					
+					<% end %>					
 				</div>
 			</div>
 			<br>
@@ -153,4 +152,9 @@
 		<% end %>
 	</div>
 </div>
+
+<br>
+<br>
+<br>
+<h6>vacancies#show. This is where recruiters find candidates to the vacancy pool.</h6>
 
