@@ -1,6 +1,8 @@
 class Vacancy < ApplicationRecord
 	belongs_to :company
 	belongs_to :recruiter
+  has_many :jobseeker_vacancies
+  has_many :jobseekers, through: :jobseeker_vacancies
 
 	DEPARTMENT_LIST = [
   	'Accounting & Finance',

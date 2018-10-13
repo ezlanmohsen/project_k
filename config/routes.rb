@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 	resources :vacancies do
 	end
 
+	post '/vacancies/:vacancy_id/jobseeker_vacancies' => 'jobseeker_vacancies#create', :as => :create_match
+
 end

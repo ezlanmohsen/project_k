@@ -35,6 +35,8 @@ class VacanciesController < ApplicationController
 			@jobseekers = Jobseeker.where(location_id: @company.state).where("we1_id LIKE (?) OR we2_id LIKE (?) or we3_id LIKE (?)", @company.industry, @company.industry, @company.industry)
 	    end
 
+	    @match = JobseekerVacancy.new
+
 
 
 

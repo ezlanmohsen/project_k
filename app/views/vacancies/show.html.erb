@@ -127,7 +127,24 @@
 				<br>
 				<div>
 					Preview Profile (link to user profile) <br>
-					Add to Interview Pool (action button)
+					<% if JobseekerVacancy.where(vacancy_id: params[:id]).where(jobseeker_id: jobseeker.id).exists? %>
+						Remove this candidate from your pool!
+					<% else %>
+						<div>
+							<%=form_for(@match, url:create_match_path(@vacancy), method: 'post') do |form|%>
+							<div>
+								<!-- Hidden text field carrying variable unrelated to mode -->
+								<%= form.hidden_field :jobseeker_id, :value => jobseeker.id %>
+							</div>	 
+							<%=form.submit "I like this candidate"%>
+							<% end %>
+						</div>
+					<% end %>
+
+
+
+	
+					
 				</div>
 			</div>
 			<br>
