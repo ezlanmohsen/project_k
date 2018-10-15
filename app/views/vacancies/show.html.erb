@@ -1,160 +1,186 @@
-<div style="background-color: yellow">
-	<h3>NOTES FOR DEMONSTRATION</h3>
-	<ol>
-	</ol>
-</div>
-
-<h3>Company Profile</h3>
-<div>
-	Name: <%= @company.name %><br>
-	State: <%= @company.state.name %><br>
-	Industry: <%= @company.industry.name %><br>
-</div>
-
-<h3>Vacancy Details</h3>
-<div>
-	Role: <%= @vacancy.name %><br>
-	Description: <%= @vacancy.description %><br>
-	Department: <%= @vacancy.department %><br>
-	Quantity Needed: <%= @vacancy.quantity %><br>
-</div>
-
-<div>
-	<h4>Well done. Now, build the right pool for this vacancy!</h4>
+<div style="margin: 10px;">
 	<div style="background-color: yellow">
 		<h3>NOTES FOR DEMONSTRATION</h3>
 		<ol>
-			<li>Recruiter can use all the filtering abilities to find the right person before they add who they like into the cart</li>
-			<li>They are many more filtering. This demo only showed based on 4 areas</li>
-			<li>Key to the filtering is fast and multidimensional. Demo product is a basic one which is 1 dimensional</li>
+				<li>Recruiter can use all the filtering abilities to find the right person before they add who they like into the cart</li>
+				<li>They are many more filtering. This demo only showed based on 4 areas</li>
+				<li>Key to the filtering is fast and multidimensional. Demo product is a basic one which is 1 dimensional</li>
 		</ol>
 	</div>
+
 	<div>
-		Search Tags
-
-		<div>
-			<h4>Total candidates matching filters: <%= @jobseekers.count %></h4>
-			<h4>Total candidates in your pool: <%= @matches.count %></h4>
-			<div>
-				<%= link_to "NEXT!", vacancy_interview_path(@vacancy) %>
-			</div>
-
-			<div>
-
-			</div>
-
-			<ol>Filters in action!
-				<li>Someone who is based in <%= @company.state.name %></li>
-				<li>Someone with any working experience related to: <%= @company.industry.name %></li>
-				<% if params[:degree] %>
-					<li> Someone with a degree in <%= Industry.find(params[:degree]).name %> </li>
-				<% end %>
-				<% if params[:knowledge] %>
-					<li> Someone with high knowledge in <%= Topic.find(params[:knowledge]).name %> </li>
-				<% end %>
-				<% if params[:skill] %>
-					<li> Someone with high skill in <%= Skill.find(params[:skill]).name %> </li>
-				<% end %>
-				<% if params[:activity] %>
-					<li> Someone with big involvement in <%= Activity.find(params[:activity]).name %> </li>
-				<% end %>
-			</ol>
-
-			<div>
-				<!-- Search by advanced filters -->
-				<div>
-					<h4>Degree:</h4>
-						<% @degrees.each do |degree| %>
-							<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
-								<%= hidden_field_tag  :degree, degree.id %>
-								<%= submit_tag degree.name, :name => nil %>
-							<% end %>
-						<% end %>
-				</div>
-
-				<div>
-					<h4>Top Knowledge:</h4>
-						<% @knowledges.each do |knowledge| %>
-							<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
-								<%= hidden_field_tag  :knowledge, knowledge.id %>
-								<%= submit_tag knowledge.name, :name => nil %>
-							<% end %>
-						<% end %>
-				</div>
-
-				<div>
-					<h4>Top Skill:</h4>
-						<% @skills.each do |skill| %>
-							<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
-								<%= hidden_field_tag  :skill, skill.id %>
-								<%= submit_tag skill.name, :name => nil %>
-							<% end %>
-						<% end %>
-				</div>
-
-				<div>
-					<h4>Top Activity:</h4>
-						<% @activities.each do |activity| %>
-							<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
-								<%= hidden_field_tag  :activity, activity.id %>
-								<%= submit_tag activity.name, :name => nil %>
-							<% end %>
-						<% end %>
-				</div>
-			</div>
-
+		<h3>Company Profile</h3>
+		<div style="margin-bottom: 5px;">
+			Name: <%= @company.name %><br>
+			Industry: <%= @company.industry.name %><br>
+			Size: <%= @company.workforce_size %><br>
+			Preference of talent work hours: <%= @company.work_hours %><br>
+			Preference of talent strength: <%= @company.strength %><br>
 		</div>
-
-		<br>
-		<br>
-		<br>
 	</div>
 
+	<br>
+
 	<div>
-		<% @jobseekers.each do |jobseeker|%>
+		<h3>Vacancy Details</h3>
+		<div style="margin-bottom: 5px;">
+			Role: <%= @vacancy.name %><br>
+			Description: <%= @vacancy.description %><br>
+			Department: <%= @vacancy.department %><br>
+			Quantity Needed: <%= @vacancy.quantity %><br>
+		</div>
+	</div>
+
+	<div style="border: 2px blue solid; padding: 10px;">
+			<h4><%= @vacancy.name %></h4>
 			<div>
-				Candidate Number: <%= jobseeker.id %><br>
-				Last Activity: <%= jobseeker.created_at.to_date %><br>
-				Degree in: <%= jobseeker.degree.name %><br>
-				University: <%= jobseeker.university.name %><br>
-				Latest CGPA: <%= jobseeker.cgpa %><br>
-				Location: <%= jobseeker.location.name %><br>
-				Prefers to work in <%= jobseeker.pref_size %> company<br>
-				Prefers to work  in <%= jobseeker.pref_hours %> hours<br>
-				Has worked for companies in:
-					<li><%= jobseeker.we1.name %></li>
-					<li><%= jobseeker.we2.name %></li>
-					<li><%= jobseeker.we3.name %></li>
-				Knowledge Score: <%= jobseeker.knowledge_score %>%<br>
-				Skill Score: <%= jobseeker.skill_score %>%<br>
-				Activity Score: <%= jobseeker.activity_score %>%<br>
-				<br>
-				<div>
-					Preview Profile (link to user profile) <br>
-					<% if JobseekerVacancy.where(vacancy_id: params[:id]).where(jobseeker_id: jobseeker.id).exists? %>
-						Remove this candidate from your pool!
-					<% else %>
-						<div>
-							<%=form_for(@match, url:create_match_path(@vacancy), method: 'post') do |form|%>
-							<div>
-								<!-- Hidden text field carrying variable unrelated to mode -->
-								<%= form.hidden_field :jobseeker_id, :value => jobseeker.id %>
-							</div>	 
-							<%=form.submit "I like this candidate"%>
-							<% end %>
+				<div class="text-center">
+					<h6>Filters in Action</h6>
+				</div>
+
+				<div class="row" style="margin: 10px;">
+					<div class="btn btn-outline-primary" style="margin: 2px 5px; color: black">
+						Based in <%= @company.state.name %>
+					</div>
+					<div class="btn btn-outline-primary" style="margin: 2px 5px; color: black">
+						>1 working experience in <%= @company.industry.name %>
+					</div>
+
+					<% if params[:degree] %>
+						<div class="btn btn-outline-primary" style="margin: 2px 5px; color: black">
+							Degree in <%= Industry.find(params[:degree]).name %>
 						</div>
-					<% end %>					
+					<% end %>
+					<% if params[:knowledge] %>
+						<div class="btn btn-outline-primary" style="margin: 2px 5px; color: black">
+							High knowledge in <%= Topic.find(params[:knowledge]).name %>
+						</div>
+					<% end %>
+					<% if params[:skill] %>
+						<div class="btn btn-outline-primary" style="margin: 2px 5px; color: black">
+							High Skill in <%= Skill.find(params[:skill]).name %>
+						</div>				
+					<% end %>
+					<% if params[:activity] %>
+						<div class="btn btn-outline-primary" style="margin: 2px 5px; color: black">
+							Active in <%= Activity.find(params[:activity]).name %>
+						</div>				
+					<% end %>
+				</div>
+			</div>
+
+			<div class="container-fluid" style="font-size: 15px;">
+			    <div class="row">
+					<div class="col-sm-6 col-lg-3 py-2">
+						<div class="container-fluid">
+							<div class="row" style="margin: 10px;">
+								<h4>Degree:</h4>
+								<% @degrees.each do |degree| %>
+									<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
+										<%= hidden_field_tag  :degree, degree.id %>
+										<%= submit_tag degree.name, :name => nil %>
+									<% end %>
+								<% end %>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 py-2">
+						<div class="container-fluid">
+							<div class="row" style="margin: 10px;">
+								<h4>Top Knowledge:</h4>
+									<% @knowledges.each do |knowledge| %>
+										<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
+											<%= hidden_field_tag  :knowledge, knowledge.id %>
+											<%= submit_tag knowledge.name, :name => nil %>
+										<% end %>
+									<% end %>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 py-2">
+						<div class="container-fluid">
+							<div class="row" style="margin: 10px;">
+								<h4>Top Skill:</h4>
+									<% @skills.each do |skill| %>
+										<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
+											<%= hidden_field_tag  :skill, skill.id %>
+											<%= submit_tag skill.name, :name => nil %>
+										<% end %>
+									<% end %>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3 py-2">
+						<div class="container-fluid">
+							<div class="row" style="margin: 10px;">
+								<h4>Top Activity:</h4>
+									<% @activities.each do |activity| %>
+										<%= form_tag vacancy_path(params[:id]), :method => "get" do %>
+											<%= hidden_field_tag  :activity, activity.id %>
+											<%= submit_tag activity.name, :name => nil %>
+										<% end %>
+									<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="text-center">
+				<h4>Total candidates in your pool: <%= @matches.count %></h4>
+				<div class="btn btn-success" style="font-size: 30px">
+					<%= link_to "Set interview questions!", vacancy_interview_path(@vacancy) %>
 				</div>
 			</div>
 			<br>
-			<br>
-			<br>
-		<% end %>
+			<div class="text-center">
+				<h4>Total candidates matching filters: <%= @jobseekers.count %></h4>
+			</div>
+			<div class="container-fluid" style="font-size: 15px;">
+			    <div class="row">
+			    	<% @jobseekers.each do |jobseeker|%>
+				        <div class="col-sm-6 col-lg-3 py-2">
+				            <div class="card h-100" style="background-color: rgb(173, 188, 201)">
+				                <div class="card-body">
+				                    <h4 class="card-title">Candidate Number: <%= jobseeker.id %></h4>
+				                    <p class="card-text">
+										Degree in: <%= jobseeker.degree.name %><br>
+										University: <%= jobseeker.university.name %><br>
+										Latest CGPA: <%= jobseeker.cgpa %><br>
+										Location: <%= jobseeker.location.name %><br>
+										Prefers to work in <%= jobseeker.pref_size %> company<br>
+										Prefers to work  in <%= jobseeker.pref_hours %> hours<br>
+										Has worked for companies in:
+											<li><%= jobseeker.we1.name %></li>
+											<li><%= jobseeker.we2.name %></li>
+											<li><%= jobseeker.we3.name %></li>
+										Knowledge Score: <%= jobseeker.knowledge_score %>%<br>
+										Skill Score: <%= jobseeker.skill_score %>%<br>
+										Activity Score: <%= jobseeker.activity_score %>%<br>
+				                    	</p>
+				                    <p class="card-text"><small class="text-muted">Last Updated: <%= jobseeker.created_at.to_date %></small></p>
+				                    	<a href="#" class="btn btn-primary" style="margin: 2px;">Check Jobseeker Out</a>
+										<div>
+											<% if JobseekerVacancy.where(vacancy_id: params[:id]).where(jobseeker_id: jobseeker.id).exists? %>
+												Remove this candidate from your pool!
+											<% else %>
+												<div>
+													<%=form_for(@match, url:create_match_path(@vacancy), method: 'post') do |form|%>
+													<div>
+														<!-- Hidden text field carrying variable unrelated to mode -->
+														<%= form.hidden_field :jobseeker_id, :value => jobseeker.id %>
+													</div>	 
+													<%=form.submit "I like this candidate"%>
+													<% end %>
+												</div>
+											<% end %>					
+										</div>
+				                </div>
+				            </div>
+				        </div>
+				    <% end %>
+			    </div>
+			</div>
 	</div>
 </div>
-
-<br>
-<br>
-<br>
-<h6>vacancies#show. This is where recruiters find candidates to the vacancy pool.</h6>
 

@@ -23,7 +23,7 @@ class Vacancy < ApplicationRecord
     'What do you know about the company?',
     'What are your greatest professional strengths?',
     'What do you consider to be your weaknesses?',
-    'Tell me about a challenge or conflict you have faced at university, and how you dealt with it.',
+    'Tell me how you dealt with the biggest challenge in university?',
     'Where do you see yourself in five years?',
     'What type of work environment do you prefer?',
     'How do you deal with pressure or stressful situations?',

@@ -1,47 +1,60 @@
-
-<div style="background-color: yellow">
-	<h3>NOTES FOR DEMONSTRATION</h3>
-	<ol>
-		<li>Recruiter can then watch the video.</li>
-		<li>Recruiter can choose who they want and add to cart.</li>
-		<li>Add this point, recruiter will pay RM150 per candidate they want.</li>
-	</ol>
-</div>
-
-<h3>Company Profile</h3>
-<div>
-	Name: <%= @company.name %><br>
-	State: <%= @company.state.name %><br>
-	Industry: <%= @company.industry.name %><br>
-</div>
-
-<h3>Vacancy Details</h3>
-<div>
-	Role: <%= @vacancy.name %><br>
-	Description: <%= @vacancy.description %><br>
-	Department: <%= @vacancy.department %><br>
-	Quantity Needed: <%= @vacancy.quantity %><br>
-</div>
-
-<div>
-	<h4>This is the result!</h4>
-	<div>
-		<% @matches.each do |match| %>
-				Candidate Number: <%= match.jobseeker.id %><br>
-				Degree in: <%= match.jobseeker.degree.name %><br>
-				University: <%= match.jobseeker.university.name %><br>
-				Status: Accepted<br>
-				<img src="https://upload.wikimedia.org/wikipedia/commons/7/72/YouTube_social_white_square_%282017%29.svg" style="height: 100px; width: 100px;">
-				<br>
-				<%= link_to "Add this jobseeker to your cart!", root_path %><br>
-				<%= link_to "Reject this candidate!", root_path %>
-				<br><br><br>
-		<% end %>
+<div style="margin: 10px;">
+	<div style="background-color: yellow">
+		<h3>NOTES FOR DEMONSTRATION</h3>
+		<ol>
+		</ol>
 	</div>
+
+	<div>
+		<h3>Company Profile</h3>
+		<div style="margin-bottom: 5px;">
+			Name: <%= @company.name %><br>
+			Industry: <%= @company.industry.name %><br>
+			Size: <%= @company.workforce_size %><br>
+			Preference of talent work hours: <%= @company.work_hours %><br>
+			Preference of talent strength: <%= @company.strength %><br>
+		</div>
+	</div>
+
+	<br>
+
+	<div>
+		<h3>Vacancy Details</h3>
+		<div style="margin-bottom: 5px;">
+			Role: <%= @vacancy.name %><br>
+			Description: <%= @vacancy.description %><br>
+			Department: <%= @vacancy.department %><br>
+			Quantity Needed: <%= @vacancy.quantity %><br>
+		</div>
+	</div>
+
+	<div style="border: 2px blue solid; padding: 2px; margin-bottom: 5px;">
+		<div class="text-center">
+			<h4>Interview Pool: <%= @matches.count %> jobseekers</h4>
+		</div>
+		<div class="container-fluid" style="font-size: 15px;">
+		    <div class="row">
+		    	<% @matches.each do |match|%>
+			        <div class="col-sm-6 col-lg-3 py-2">
+			            <div class="card h-100" style="background-color: lightgreen">
+			            	<img class="card-img-top img-fluid" src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" alt="Card image cap">
+			                <div class="card-body">
+			                    <h4 class="card-title">Candidate Number: <%= match.jobseeker.id %></h4>
+			                    <p class="card-text">
+									Degree in: <%= match.jobseeker.degree.name %><br>
+									University: <%= match.jobseeker.university.name %><br>
+									Latest CGPA: <%= match.jobseeker.cgpa %><br>
+									Knowledge Score: <%= match.jobseeker.knowledge_score %>%<br>
+									Skill Score: <%= match.jobseeker.skill_score %>%<br>
+									Activity Score: <%= match.jobseeker.activity_score %>%<br>
+			                    	</p>
+			                    <p class="card-text"><small class="text-muted">Last Updated: <%= match.jobseeker.created_at.to_date %></small></p>
+			                </div>
+			            </div>
+			        </div>
+			    <% end %>
+		    </div>
+		</div>
+	</div>
+
 </div>
-
-
-<br>
-<br>
-<br>
-<h6>vacancies#results. This is where recruiters check status.</h6>
