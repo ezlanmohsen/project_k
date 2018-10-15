@@ -1,14 +1,17 @@
-<h1>Welcome to Kiasu.my!</h1>
+<div class="text-center" style="margin: 50px;">
+	<h1>Welcome to Jobtivity.my!</h1>
+</div>
 
-<div>
-	<h3>Have an account!</h3>
-	<p>Log in here!</p>
+<div class="text-center" style="margin: 50px;">
+	<div style="margin: 20px;">
+		<h3>Have an account!</h3>
+	</div>
 	<div>
 		<!-- Form to create new session when recruiter log in -->
 		<%= form_tag('/login', :method => :post ) do %>
 		  Email: <%= text_field_tag :email %>
 		  Password: <%= password_field_tag :password %>
-		  <%= submit_tag "Submit" %>
+		  <%= submit_tag "LOG IN" %>
 			<% flash.each do |key, value| %>
 			    <div> <%= value %> </div>
 			<% end %>
@@ -18,9 +21,10 @@
 
 <br>
 
-<div>
-	<h3>Want to take your company to a greater height?</h3>
-	<p>Sign Up here</p>
+<div class="text-center" style="margin: 50px;">	
+	<div style="margin: 20px;">
+		<h3>Sign up and take your company to a greater height!</h3>
+	</div>
 
 	<div>
 		<!-- Form to create new recruiters -->
@@ -33,14 +37,9 @@
 		  Password: <%= f.password_field :password %>
 		  Password Confirmation: <%= f.password_field :password_confirmation %>
 		  <br>
-		  <%= f.submit "Submit" %>
+		  <br>
+		  <%= f.submit "CALL ME FOR CONFIRMATION" %>
 
 		<% end %>
 	</div>
 </div>
-
-
-<br>
-<br>
-<br>
-<h6>generic#landing. Root.</h6>

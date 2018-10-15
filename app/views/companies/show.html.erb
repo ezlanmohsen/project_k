@@ -1,142 +1,131 @@
-<div style="background-color: yellow">
-	<h3>NOTES FOR DEMONSTRATION</h3>
-	<ol>
-		<li>This is the main page. In normal day, this is the first page after recruiter login</li>
-		<li>Recruiter can do 2 key things: 1)Set general filters for their companies and see who matched them 2)Create a specific vacancy</li>
-	</ol>
-</div>
-
-<div>
-	<h1>Get your perfect hire today!</h1>
-</div>
-
-<div>
-	<h3>Company Profile</h3>
-	<div>
-		Name: <%= @company.name %><br>
-		State: <%= @company.state.name %><br>
-		Industry: <%= @company.industry.name %><br>
-		Size: <%= @company.workforce_size %><br>
-		Preference of talent work hours: <%= @company.work_hours %><br>
-		Preference of talent strength: <%= @company.strength %><br>
-	</div>
-	<h4>(Tell us more HERE so we can find you better candidates! - link to add filters and update company profile)</h4>
-</div>
-
-<br>
-<br>
-
-<div style="border: 2px red solid">
-	<h3><%=@jobseekers.count%> candidate(s) matched your general filters and liked you back!</h3>
-
-	<div>
-		<ol>Filters in action!</ol>
-			<li>Someone who is based in <%= @company.state.name %></li>
-			<li>Someone who prefers to work in size <%= @company.workforce_size %> company</li>
-			<li>Someone with a degree in <%= @company.industry.name %></li>
-			<li>Someone with at least 1 working experience in <%= @company.industry.name %></li>
-			<li>Someone who prefers the working style of <%= @company.work_hours %></li>
-	</div>
-
-	<h4>(Search Filters - so they can  further search this list of profiles)</h4>
+<div style="margin: 10px;">
 
 	<div style="background-color: yellow">
 		<h3>NOTES FOR DEMONSTRATION</h3>
 		<ol>
-			<li>This is by default filters. Recruiter can just close any filters to remove them</li>
-			<li>The search will work on suggestive manner - ie Recruiter will be shown filters to be clicked on, not type their filters</li>
+			<li>This is the main page. In normal day, this is the first page after recruiter login</li>
+			<li>Recruiter can do 2 key things: 1)Set general filters for their companies and see who matched them 2)Create a specific vacancy</li>
+			<li>Any company will get to see which candidates that match their general filters and like their company. For free.</li>
+			<li>Company can add more filters to this general pool at any point of time</li>
+			<li>Jobseeker: Whoever matches these filters will see the company details on their mobile app.</li>
 		</ol>
 	</div>
 
-
-
-
 	<div>
-		<% @jobseekers.each do |jobseeker|%>
-			<div>
-				Candidate Number: <%= jobseeker.id %><br>
-				Last Activity: <%= jobseeker.created_at.to_date %><br>
-				Degree in: <%= jobseeker.degree.name %><br>
-				University: <%= jobseeker.university.name %><br>
-				Latest CGPA: <%= jobseeker.cgpa %><br>
-				Location: <%= jobseeker.location.name %><br>
-				Prefers to work in <%= jobseeker.pref_size %> company<br>
-				Prefers to work  in <%= jobseeker.pref_hours %> hours<br>
-				Has worked for companies in:
-					<li><%= jobseeker.we1.name %></li>
-					<li><%= jobseeker.we2.name %></li>
-					<li><%= jobseeker.we3.name %></li>
-				Knowledge Score: <%= jobseeker.knowledge_score %>%<br>
-				Skill Score: <%= jobseeker.skill_score %>%<br>
-				Activity Score: <%= jobseeker.activity_score %>%<br>
-				<br>
-				<div>
-					Preview Profile (link to user profile) <br>
-					Add to Interview Pool (action button)
-				</div>
-			</div>
-			<br>
-			<br>
-			<br>
-		<% end %>
+		<h3>Company Profile</h3>
+		<div style="margin-bottom: 10px;">
+			Name: <%= @company.name %><br>
+			State: <%= @company.state.name %><br>
+			Industry: <%= @company.industry.name %><br>
+			Size: <%= @company.workforce_size %><br>
+			Preference of talent work hours: <%= @company.work_hours %><br>
+			Preference of talent strength: <%= @company.strength %><br>
+		</div>
+		<h6>(Edit Company) - Tell us more about your company!</h6>
 	</div>
-</div>
 
-<br>
-<br>
+	<br>
+	<br>
 
-<div style="border: 2px red solid">
-	<h4>Your Vacancies!</h4>
-	<div>
-		<% @vacancies.each do |v| %>
-			<div style="border: 2px solid blue">
-				Name of role: <%= v.name %><br>
-				Description: <%= v.description %><br>
-				Department: <%= v.department %><br>
-				Quantity: <%= v.quantity %><br>
-				Size of talent pool: <%= v.jobseekers.count %> jobseekers!<br>
-				<br><br>
-				<div>
-					List of questions!
+	<div style="border: 2px blue solid; padding: 10px;">
+		<h4>Your Vacancies!</h4>
+		<% if @vacancies.count == 0%>
+			<div>
+				You have no vacancy yet.
+			</div>
+		<% end %>
+
+		<div>
+			<% @vacancies.each do |v| %>
+				<div style="border: 2px solid blue">
+					Name of role: <%= v.name %><br>
+					Description: <%= v.description %><br>
+					Department: <%= v.department %><br>
+					Quantity: <%= v.quantity %><br>
+					Size of talent pool: <%= v.jobseekers.count %> jobseekers!<br>
+					<br><br>
 					<div>
-						Question 1: <%= v.question_1 %><br>
-						Duration: <%= v.q1_time %>seconds<br>
-						<br>
-						Question 2: <%= v.question_2 %><br>
-						Duration: <%= v.q2_time %>seconds<br>
-						<br>
-						Question 3: <%= v.question_3 %><br>
-						Duration: <%= v.q3_time %>seconds<br>
-						<br>
-						Question 4: <%= v.question_4 %><br>
-						Duration: <%= v.q4_time %>seconds<br>
-						<br>
-						Question 5: <%= v.question_5 %><br>
-						Duration: <%= v.q5_time %>seconds<br>
-						<br>
+						List of questions!
+						<div>
+							Question 1: <%= v.question_1 %><br>
+							Duration: <%= v.q1_time %>seconds<br>
+							<br>
+							Question 2: <%= v.question_2 %><br>
+							Duration: <%= v.q2_time %>seconds<br>
+							<br>
+							Question 3: <%= v.question_3 %><br>
+							Duration: <%= v.q3_time %>seconds<br>
+							<br>
+							Question 4: <%= v.question_4 %><br>
+							Duration: <%= v.q4_time %>seconds<br>
+							<br>
+							Question 5: <%= v.question_5 %><br>
+							Duration: <%= v.q5_time %>seconds<br>
+							<br>
+						</div>
+					</div>
+					<% if v.question_1 =! nil %>
+						<%= link_to "Get your result!", vacancy_interview_results_path(v) %>
+					<% else %>
+						<%= link_to "Check out this vacancy", vacancy_path(v) %>
+					<% end %>
+				</div>
+			<% end %>
+			<div class="btn btn-outline-primary" style="margin-top: 10px;">
+				<h3><%= link_to "Create New Vacancy", new_vacancy_path %></h3>
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+	<br>
+	<br>	
+
+	<div style="border: 2px blue solid; padding: 10px;">
+		<h4>General Pool!</h4>
+		<h6><%=@jobseekers.count%> candidate(s) matched your general filters and liked you back!</h6>
+		<div>
+			<ol><h6>Filters in action!</h6>
+				<li>Someone who is based in <%= @company.state.name %></li>
+				<li>Someone who prefers to work in size <%= @company.workforce_size %> company</li>
+				<li>Someone with a degree in <%= @company.industry.name %></li>
+				<li>Someone with at least 1 working experience in <%= @company.industry.name %></li>
+				<li>Someone who prefers the working style of <%= @company.work_hours %></li>
+			</ol>
+			<h6>Add more general filters!</h6>
+		</div>
+
+		<div>
+			<% @jobseekers.each do |jobseeker|%>
+				<div>
+					Candidate Number: <%= jobseeker.id %><br>
+					Last Activity: <%= jobseeker.created_at.to_date %><br>
+					Degree in: <%= jobseeker.degree.name %><br>
+					University: <%= jobseeker.university.name %><br>
+					Latest CGPA: <%= jobseeker.cgpa %><br>
+					Location: <%= jobseeker.location.name %><br>
+					Prefers to work in <%= jobseeker.pref_size %> company<br>
+					Prefers to work  in <%= jobseeker.pref_hours %> hours<br>
+					Has worked for companies in:
+						<li><%= jobseeker.we1.name %></li>
+						<li><%= jobseeker.we2.name %></li>
+						<li><%= jobseeker.we3.name %></li>
+					Knowledge Score: <%= jobseeker.knowledge_score %>%<br>
+					Skill Score: <%= jobseeker.skill_score %>%<br>
+					Activity Score: <%= jobseeker.activity_score %>%<br>
+					<br>
+					<div>
+						Preview Profile (link to user profile) <br>
+						Add to Interview Pool (action button)
 					</div>
 				</div>
-				<% if v.question_1 =! nil %>
-					<%= link_to "Get your result!", vacancy_interview_results_path(v) %>
-				<% else %>
-					<%= link_to "Check out this vacancy", vacancy_path(v) %>
-				<% end %>
-
-
-			</div>
-		<% end %>
+				<br>
+				<br>
+				<br>
+			<% end %>
+		</div>
 	</div>
+
 </div>
-
-<br>
-<br>
-
-<div style="border: 1px solid red; text-align: center;">
-	<h3><%= link_to "Create New Vacancy", new_vacancy_path %></h3>
-</div>
-
-
-<br>
-<br>
-<br>
-<h6>companies#show. Main page for recruiter. This is where they see everything.</h6>

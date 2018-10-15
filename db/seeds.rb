@@ -6,125 +6,125 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# # Creating Industry
+# # # Creating Industry
 
-Industry.destroy_all
+# Industry.destroy_all
 
-Industry.create([
-	{name: "Agriculture, forestry and fishing"},
-	{name: "Mining and quarrying"},
-	{name: "Manufacturing"},
-	{name: "Construction"},
-	{name: "Wholesale and retail"},
-	{name: "Transporting and storage"},
-	{name: "Accommodation and food service"},
-	{name: "Information and communication"},
-	{name: "Financial and insurance"},
-	{name: "Administrative and support"},
-	{name: "Public administration and defence"},
-	{name: "Education"},
-	{name: "Human health and social work"},
-	{name: "Arts, entertainment and recreation"},
-	{name: "Others"},
-])
+# Industry.create([
+# 	{name: "Agriculture, forestry and fishing"},
+# 	{name: "Mining and quarrying"},
+# 	{name: "Manufacturing"},
+# 	{name: "Construction"},
+# 	{name: "Wholesale and retail"},
+# 	{name: "Transporting and storage"},
+# 	{name: "Accommodation and food service"},
+# 	{name: "Information and communication"},
+# 	{name: "Financial and insurance"},
+# 	{name: "Administrative and support"},
+# 	{name: "Public administration and defence"},
+# 	{name: "Education"},
+# 	{name: "Human health and social work"},
+# 	{name: "Arts, entertainment and recreation"},
+# 	{name: "Others"},
+# ])
 
-p "Seeded #{Industry.count} entries for Industry"
+# p "Seeded #{Industry.count} entries for Industry"
 
-# #Seeding States
-State.destroy_all
+# # #Seeding States
+# State.destroy_all
 
-State.create([
-	{name: "Perlis"},
-	{name: "Kedah"},
-	{name: "Penang"},
-	{name: "Perak"},
-	{name: "Kelantan"},
-	{name: "Terengganu"},
-	{name: "Pahang"},
-	{name: "Selangor"},
-	{name: "Kuala Lumpur"},
-	{name: "Negeri Sembilan"},
-	{name: "Melaka"},
-	{name: "Johor"},
-	{name: "Sarawak"},
-	{name: "Sabah"},
-	{name: "Labuan"},
-])
+# State.create([
+# 	{name: "Perlis"},
+# 	{name: "Kedah"},
+# 	{name: "Penang"},
+# 	{name: "Perak"},
+# 	{name: "Kelantan"},
+# 	{name: "Terengganu"},
+# 	{name: "Pahang"},
+# 	{name: "Selangor"},
+# 	{name: "Kuala Lumpur"},
+# 	{name: "Negeri Sembilan"},
+# 	{name: "Melaka"},
+# 	{name: "Johor"},
+# 	{name: "Sarawak"},
+# 	{name: "Sabah"},
+# 	{name: "Labuan"},
+# ])
 
-p "Seeded #{State.count} entries for state"
-
-
-# #Seeding University
-University.destroy_all
-
-University.create([
-    {name: "Universiti Malaya"},
-    {name: "Universiti Kebangsaan Malaysia"},
-    {name: "Universiti Putra Malaysia"},
-    {name: "Universiti Sains Malaysia"},
-    {name: "Universiti Teknologi Malaysia"},
-    {name: "Universiti Teknologi Petronas"},
-    {name: "Lim Kok Wing university"},
-    {name: "Taylor's University"},
-    {name: "Help University"},
-])
-
-p "Seeded #{University.count} entries for university"
+# p "Seeded #{State.count} entries for state"
 
 
-# #Seeding Topic
-Topic.destroy_all
+# # #Seeding University
+# University.destroy_all
 
-Topic.create([
-    {name: "Arts & Culture"},
-    {name: "Business & Finance"},
-    {name: "Basic Sciences"},
-    {name: "Economics"},
-    {name: "Government & Politics"},
-    {name: "Information Technology"},
-    {name: "Sports & Recreation"},
-    {name: "Media"},
-    {name: "Education"},
-    {name: "Entrepreneurship"}
+# University.create([
+#     {name: "Universiti Malaya"},
+#     {name: "Universiti Kebangsaan Malaysia"},
+#     {name: "Universiti Putra Malaysia"},
+#     {name: "Universiti Sains Malaysia"},
+#     {name: "Universiti Teknologi Malaysia"},
+#     {name: "Universiti Teknologi Petronas"},
+#     {name: "Lim Kok Wing university"},
+#     {name: "Taylor's University"},
+#     {name: "Help University"},
+# ])
 
-])
-
-p "Seeded #{Topic.count} entries for topic"
+# p "Seeded #{University.count} entries for university"
 
 
-# #Seeding Skill
-Skill.destroy_all
+# # #Seeding Topic
+# Topic.destroy_all
 
-Skill.create([
-    {name: "Writing"},
-    {name: "Programming"},
-    {name: "Marketing"},
-    {name: "Communications"},
-    {name: "Researching"},
-    {name: "Project"},
-    {name: "Management"},
-    {name: "Analytics"},
-    {name: "Inventing"}
-])
+# Topic.create([
+#     {name: "Arts & Culture"},
+#     {name: "Business & Finance"},
+#     {name: "Basic Sciences"},
+#     {name: "Economics"},
+#     {name: "Government & Politics"},
+#     {name: "Information Technology"},
+#     {name: "Sports & Recreation"},
+#     {name: "Media"},
+#     {name: "Education"},
+#     {name: "Entrepreneurship"}
 
-p "Seeded #{Skill.count} entries for Skill"
+# ])
+
+# p "Seeded #{Topic.count} entries for topic"
 
 
-# #Seeding Activity
-Activity.destroy_all
+# # #Seeding Skill
+# Skill.destroy_all
 
-Activity.create([
-    {name: "Volunteering"},
-    {name: "Sports"},
-    {name: "Debating"},
-    {name: "Student Association"},
-    {name: "Travelling"},
-    {name: "Entrepreneurship"},
-    {name: "Civil Activism"}
+# Skill.create([
+#     {name: "Writing"},
+#     {name: "Programming"},
+#     {name: "Marketing"},
+#     {name: "Communications"},
+#     {name: "Researching"},
+#     {name: "Project"},
+#     {name: "Management"},
+#     {name: "Analytics"},
+#     {name: "Inventing"}
+# ])
 
-])
+# p "Seeded #{Skill.count} entries for Skill"
 
-p "Seeded #{Activity.count} entries for Activity"
+
+# # #Seeding Activity
+# Activity.destroy_all
+
+# Activity.create([
+#     {name: "Volunteering"},
+#     {name: "Sports"},
+#     {name: "Debating"},
+#     {name: "Student Association"},
+#     {name: "Travelling"},
+#     {name: "Entrepreneurship"},
+#     {name: "Civil Activism"}
+
+# ])
+
+# p "Seeded #{Activity.count} entries for Activity"
 
 
 
@@ -157,7 +157,38 @@ ActiveRecord::Base.transaction do
   end
 end 
 
-p "Seeded #{Jobseeker.count} entries for Jobseekers"
+p "Seeded #{Jobseeker.count} entries for Typical Jobseekers"
+
+# Seeding  Advanced Jobseekers
+
+Jobseeker.destroy_all
+
+jobseeker = {}
+
+ActiveRecord::Base.transaction do
+  2000.times do 
+    jobseeker['name'] = Faker::Name.name  
+    jobseeker['email'] = Faker::Internet.email
+    jobseeker['location'] = State.find([8, 9].sample)
+    jobseeker['degree'] = Industry.find([8, 9, 10].sample)
+    jobseeker['university'] = University.find(Faker::Number.between(1, 9))
+    jobseeker['cgpa'] = [2.01, 2.50, 3.00, 3.50, 3.61, 3.75, 3.83, 3.91].sample
+    jobseeker['pref_size'] = ["Small", "Big"].sample
+    jobseeker['pref_hours'] = ["Traditional", "Modern"].sample
+    jobseeker['we1'] = Industry.find([1, 3, 4, 7, 8, 9, 10].sample)
+    jobseeker['we2'] = Industry.find([1, 3, 4, 7, 8, 9, 10].sample)
+    jobseeker['we3'] = Industry.find([1, 3, 4, 7, 8, 9, 10].sample)
+    jobseeker['knowledge_score'] = Faker::Number.between(30, 100)
+    jobseeker['skill_score'] = Faker::Number.between(30, 100)
+    jobseeker['activity_score'] = Faker::Number.between(30, 100)
+    jobseeker['top_knowledge'] = Topic.find([2, 4, 6, 10].sample)
+    jobseeker['top_skill'] = Skill.find(Faker::Number.between(1, 9))
+    jobseeker['top_activity'] = Activity.find(Faker::Number.between(1, 7))
+    Jobseeker.create(jobseeker)
+  end
+end 
+
+p "Seeded #{Jobseeker.count} entries for Advanced Jobseekers"
 
 
 
