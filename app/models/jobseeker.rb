@@ -1,4 +1,7 @@
 class Jobseeker < ApplicationRecord
+	enum ref_status_1: [:tbc_1, :ok_1]
+	enum ref_status_2: [:tbc_2, :ok_2]
+
 	belongs_to :location, :class_name => 'State'
 	belongs_to :degree, :class_name => 'Industry'
 	belongs_to :university, :class_name => 'University'

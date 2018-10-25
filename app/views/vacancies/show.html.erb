@@ -159,12 +159,19 @@
 										Activity Score: <%= jobseeker.activity_score %>%<br>
 				                    	</p>
 				                    <p class="card-text"><small class="text-muted">Last Updated: <%= jobseeker.created_at.to_date %></small></p>
-				                    	<a href="#" class="btn btn-primary" style="margin: 2px;">Check Jobseeker Out</a>
+				                    	<% if jobseeker.ok_1? && jobseeker.ok_2?%>
+			                    			<a href="#" class="btn btn-success" style="margin: 2px;">Reference Checked Out - 2</a>
+			                    		<% elsif jobseeker.ok_1? || jobseeker.ok_2?%>
+			                    			<a href="#" class="btn btn-success" style="margin: 2px;">Reference Checked Out - 1</a>			                    
+			                    		<% end %>
+				                    	<div>
+				                    		<a href='/jobseekers/<%=jobseeker.id%>' class="btn btn-primary" style="margin: 2px;">Check Profile</a>
+				                    	</div>
 										<div>
 											<% if JobseekerVacancy.where(vacancy_id: params[:id]).where(jobseeker_id: jobseeker.id).exists? %>
 												Remove this candidate from your pool!
 											<% else %>
-												<div>
+												<div class="btn btn-primary">
 													<%=form_for(@match, url:create_match_path(@vacancy), method: 'post') do |form|%>
 													<div>
 														<!-- Hidden text field carrying variable unrelated to mode -->

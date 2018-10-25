@@ -153,6 +153,8 @@ ActiveRecord::Base.transaction do
     jobseeker['top_knowledge'] = Topic.find(Faker::Number.between(1, 10))
     jobseeker['top_skill'] = Skill.find(Faker::Number.between(1, 9))
     jobseeker['top_activity'] = Activity.find(Faker::Number.between(1, 7))
+    jobseeker['ref_status_1'] = [0, 1].sample
+    jobseeker['ref_status_2'] = [0, 1].sample
     Jobseeker.create(jobseeker)
   end
 end 
@@ -182,6 +184,8 @@ ActiveRecord::Base.transaction do
     jobseeker['top_knowledge'] = Topic.find([2, 4, 6, 10].sample)
     jobseeker['top_skill'] = Skill.find(Faker::Number.between(1, 9))
     jobseeker['top_activity'] = Activity.find(Faker::Number.between(1, 7))
+    jobseeker['ref_status_1'] = 1
+    jobseeker['ref_status_2'] = 1
     Jobseeker.create(jobseeker)
   end
 end 

@@ -179,6 +179,11 @@
 									Activity Score: <%= jobseeker.activity_score %>%<br>
 			                    	</p>
 			                    <p class="card-text"><small class="text-muted">Last Updated: <%= jobseeker.created_at.to_date %></small></p>
+			                    	<% if jobseeker.ok_1? && jobseeker.ok_2?%>
+			                    		<a href="#" class="btn btn-success" style="margin: 2px;">Reference Checked Out - 2</a>
+			                    	<% elsif jobseeker.ok_1? || jobseeker.ok_2?%>
+			                    		<a href="#" class="btn btn-success" style="margin: 2px;">Reference Checked Out - 1</a>			                    
+			                    	<% end %>
 			                    	<a href="#" class="btn btn-primary" style="margin: 2px;">Check Jobseeker Out</a>
 			                    	<a href="#" class="btn btn-primary" style="margin: 2px;">Add to Pool</a>
 			                </div>

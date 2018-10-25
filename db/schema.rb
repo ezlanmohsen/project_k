@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 2018_10_13_173803) do
     t.decimal "cgpa", precision: 4, scale: 2, null: false
     t.string "pref_size", null: false
     t.string "pref_hours", null: false
+    t.integer "ref_status_1", default: 0
+    t.integer "ref_status_2", default: 0
     t.integer "we1_id"
     t.integer "we2_id"
     t.integer "we3_id"
